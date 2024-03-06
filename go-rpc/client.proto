@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option go_package = "github.com/BerkatPS/go-rpc/message";
+
+message Amount{
+  int64 amount = 1;
+  string currency = 2;
+
+}
+message CreateRequest{
+  Amount amount  = 1;
+  string from = 2;
+  string to = 3;
+  string email = 4;
+
+}
+
+message CreateResponse{
+  bytes pdf = 1;
+  bytes doc = 2;
+}
+service Client{
+    rpc Create(CreateRequest) returns(CreateResponse);
+}
+
