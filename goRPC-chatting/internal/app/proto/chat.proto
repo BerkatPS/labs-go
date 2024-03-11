@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option go_package = 'github.com/BerkatPS/labs-go';
+package proto;
+
+message MessageRequest{
+  string sender = 1;
+  string recipient = 2;
+  string content = 3;
+}
+
+message MessageResponse{
+  string status = 1;
+}
+
+message UserRequest{
+  string username = 1;
+}
+
+message MessageData {
+  string sender = 1;
+  string recipient = 2;
+  string content = 3;
+}
+
+message MessagesResponse{
+  repeated MessageData messages = 1;
+}
+
+service ChatService{
+  // SendMessage sends a message from sender to recipient
+  rpc SendMessage(MessageRequest) returns (MessageResponse);
+
+
+  // GetMessageForUser retrieves messages for a given user
+  rpc GetMessageForUser(UserRequest) returns (MessagesResponse);
+}
